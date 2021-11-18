@@ -1,1 +1,1 @@
-web gunicorn bbmanagement.wsgi --log-file -
+web: gunicorn bbmanagement.wsgi

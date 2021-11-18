@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wh(yzx3o6y_yw3=va6-q)vyo#0us5i1=m2%&3y1k$+%se6d#n_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['blood-bank-management.herokuapp.com/', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['blood-bank-management.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
