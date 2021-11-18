@@ -1,0 +1,1 @@
+web gunicorn bbmanagement.wsgi --log-file -
