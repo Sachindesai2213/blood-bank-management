@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
     <head>
-        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-        <meta content="utf-8" http-equiv="encoding">
-
         <meta charset="utf-8" />
         <meta
             name="viewport"
@@ -24,8 +21,8 @@
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
         />
         <!-- Nucleo Icons -->
-        <link href="{% static '/css/nucleo-icons.css" rel="stylesheet' %}" />
-        <link href="{% static '/css/nucleo-svg.css" rel="stylesheet' %}" />
+        <link href="{% static '/css/nucleo-icons.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static '/css/nucleo-svg.css' %}" rel="stylesheet" type="text/css"/>
         <!-- Font Awesome Icons -->
         <script
             src="https://kit.fontawesome.com/42d5adcbca.js"
@@ -34,14 +31,9 @@
         <!-- Material Icons -->
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-            rel="stylesheet"
         />
         <!-- CSS Files -->
-        <link
-            id="pagestyle"
-            href="{% static '/css/material-kit.css?v=3.0.0' %}"
-            rel="stylesheet"
-        />
+        <link rel="stylesheet" id="pagestyle" href="{% static '/css/material-kit.css' %}?v=3.0.0" type="text/css"/>
     </head>
 
     <body class="sign-in-basic">
@@ -65,6 +57,6 @@
         <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
         <!--  Google Maps Plugin    -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-        <script src="{% static '/js/material-kit.min.js?v=3.0.0' %}" type="text/javascript"></script>
+        <script src="{% static '/js/material-kit.min.js' %}?v=3.0.0" type="text/javascript"></script>
     </body>
 </html>
