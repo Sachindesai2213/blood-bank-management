@@ -1,0 +1,17 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+	<div class="content">
+		<!-- <ul class="nav nav-tabs mb-3">
+			<li class="nav-item">
+				<a class="nav-link {% if request.path == '/requirements/' %} active {% endif %}" aria-current="page" href="/requirements/">Public</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link {% if request.path == '/requirements/me/' %} active {% endif %}" href="/requirements/me/">Posted by me</a>
+			</li>
+		</ul> -->
+		{% block tab_content %}
+		{% endblock tab_content %}
+	</div>
+{% endblock dashboard_content %}

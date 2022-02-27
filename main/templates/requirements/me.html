@@ -1,0 +1,122 @@
+{% extends 'requirements/tabs.html' %}
+{% load static %}
+
+{% block tab_content %}
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header d-flex align-items-center justify-content-between">
+				<h4 class="card-title">Requirements</h4>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Post a requirement</button>
+			</div>
+			<div class="card-body">
+				<div>
+					<table class="table">
+						<thead class=" text-primary">
+							<th>
+								Posted on
+							</th>
+							<th>
+								Location
+							</th>
+							<th>
+								Blood type
+							</th>
+							<th>
+								Quantity
+							</th>
+							<th>
+								Description
+							</th>
+							<th>
+								Attachments
+							</th>
+							<th></th>
+							<th></th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									1 day ago
+								</td>
+								<td>
+									USA
+								</td>
+								<td>
+									A+
+								</td>
+								<td>
+									100 ml
+								</td>
+								<td>
+									Description
+								</td>
+								<td>
+									<a href="">Show document</a>
+								</td>
+								<td>
+									<button class="btn btn-primary" data-toggle="modal" data-target="#donors-list-modal">
+										Donors list <span class="badge badge-light">9</span>
+									</button>
+								</td>
+								<td>
+									<i class="nc-icon nc-box text-danger" data-toggle="modal" data-target="#delete-modal" style="font-size:20px;cursor:pointer;"></i>
+								</td>
+								<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="donors-list-modal-label" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-center" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="donors-list-modal-label">Do you want to delete this</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
+												<button type="submit" form="add-requirement-form" class="btn btn-primary">Delete</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="donors-list-modal" tabindex="-1" role="dialog" aria-labelledby="donors-list-modal-label" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-center" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="donors-list-modal-label">Post a requirement</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group">
+					<li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
+						<div class="avtar me-3 mr-3">
+							<i class="nc-icon nc-circle-10" style="font-size:30px;"></i>
+						</div>
+						<div class="d-flex align-items-start flex-column justify-content-center flex-grow-1">
+							<h6 class="mb-0 text-sm">Sophie B.</h6>
+							<p class="mb-0 text-xs">+91 9123456780</p>
+							<p class="mb-0 text-xs">sophie.b@gmail.com</p>
+						</div>
+						<a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="javascript:;">Accept</a>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
+				<button type="submit" form="add-requirement-form" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock tab_content %}

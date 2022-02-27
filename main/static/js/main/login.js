@@ -12,7 +12,7 @@ $('#login-form').submit(event => {
         },
         success: (data) => {
             if (data.status === 'Successful') {
-                window.location.href = '/';
+                window.location.href = '/requirements/';
             }
             else {
                 alert('Username or Password is incorrect');
