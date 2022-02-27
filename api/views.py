@@ -1,9 +1,86 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from main.models import *
 # Create your views here.
 
 
 @api_view(['POST'])
 def login_view(request):
-    return Response()
+    if request.method == 'POST':
+        print(request.user)
+        response = Response()
+        username = request.data['username']
+        password = request.data['password']
+        username_exists = User.objects.filter(username=username).exists()
+        status = 'Invalid Username'
+        if username_exists:
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # payload = jwt_payload_handler(user)
+                # token = jwt_encode_handler(payload)
+                # response.set_cookie(key='token', value=token, httponly=True)
+                status = 'Successful'
+                # is_mfa_user = EmployeeCompany.objects.filter(user_id=request.user.id).last().is_mfa_user
+                # if not is_mfa_user:
+                request.session['username'] = user.username
+                request.session['user_id'] = user.id
+                response.data = {
+                    'status': status,
+                }
+            else:
+                status = 'Incorrect Password'
+                response.data = {
+                    'status': status,
+                }
+        return response
+
+
+@api_view(['POST', 'PUT'])
+def signup_view(request):
+    if request.method == 'POST':
+        user = User.objects.create_user(username=request.data['username'], first_name=request.data['first_name'],
+                                 last_name=request.data['last_name'], email=request.data['email'], password=request.data['password'])
+        user_data = UserPersonalInfo(
+            user = user,
+            age = request.data['age'],
+            blood_type_id = request.data['blood_group'],
+            contact = request.data['contact'],
+        )
+        user_data.save()
+        return Response()
+    elif request.method == 'PUT':
+        user_data = UserPersonalInfo.objects.get(user_id=request.data['user_id'])
+        user_data.age = request.data['age']
+        user_data.blood_type_id = request.data['blood_group']
+        user_data.contact = request.data['contact']
+        user_data.is_active_donar = request.data['is_active_donar']
+        user_data.save()
+        return Response()        
+
+
+@api_view(['POST'])
+def requirement_view(request):
+    if request.method == 'POST':
+        requirement = Requirement(
+            user_id = request.data['user_id'],
+            blood_type_id = request.data['blood_group'],
+            quantity = request.data['quantity'],
+            location = request.data['location'],
+            description = request.data['description'],
+        )
+        requirement.save()
+        return Response()
+
+
+@api_view(['POST'])
+def requirement_donors_view(request):
+    if request.method == 'POST':
+        requirement_donors = RequirementDonors(
+            requirement_id = request.data['requirement_id'],
+            donor_id = request.data['donor_id'],
+        )
+        requirement_donors.save()
+        return Response()

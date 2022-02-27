@@ -38,61 +38,20 @@
                         >
                             Sign in
                         </h4>
-                        <div class="row mt-3">
-                            <div class="col-2 text-center ms-auto">
-                                <a
-                                    class="btn btn-link px-3"
-                                    href="javascript:;"
-                                >
-                                    <i
-                                        class="
-                                            fa fa-facebook
-                                            text-white text-lg
-                                        "
-                                    ></i>
-                                </a>
-                            </div>
-                            <div class="col-2 text-center px-1">
-                                <a
-                                    class="btn btn-link px-3"
-                                    href="javascript:;"
-                                >
-                                    <i
-                                        class="
-                                            fa fa-github
-                                            text-white text-lg
-                                        "
-                                    ></i>
-                                </a>
-                            </div>
-                            <div class="col-2 text-center me-auto">
-                                <a
-                                    class="btn btn-link px-3"
-                                    href="javascript:;"
-                                >
-                                    <i
-                                        class="
-                                            fa fa-google
-                                            text-white text-lg
-                                        "
-                                    ></i>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form role="form" class="text-start">
+                    <form role="form" class="text-start" id="login-form">
                         <div
                             class="
                                 input-group input-group-outline
                                 my-3
                             "
                         >
-                            <label class="form-label">Email</label>
+                            <label class="form-label">Username</label>
                             <input
-                                type="email"
                                 class="form-control"
+                                id="username"
                             />
                         </div>
                         <div
@@ -107,6 +66,7 @@
                             <input
                                 type="password"
                                 class="form-control"
+                                id="password"
                             />
                         </div>
                         <div
@@ -130,7 +90,7 @@
                         </div>
                         <div class="text-center">
                             <button
-                                type="button"
+                                type="submit"
                                 class="
                                     btn
                                     bg-gradient-primary
@@ -145,7 +105,7 @@
                         <p class="mt-4 text-sm text-center">
                             Don't have an account?
                             <a
-                                href="javascript:;"
+                                href="/signup/"
                                 class="
                                     text-primary text-gradient
                                     font-weight-bold
@@ -160,3 +120,6 @@
     </div>
 </div>
 {% endblock main_content %}
+{% block js_files %}
+<script src="{% static '/js/main/login.js' %}"></script>
+{% endblock js_files %}
