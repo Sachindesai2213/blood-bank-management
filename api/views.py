@@ -52,12 +52,18 @@ def signup_view(request):
         user_data.save()
         return Response()
     elif request.method == 'PUT':
-        user_data = UserPersonalInfo.objects.get(user_id=request.data['user_id'])
-        user_data.age = request.data['age']
-        user_data.blood_type_id = request.data['blood_group']
+        user_id = request.user.id
+        user_data = UserPersonalInfo.objects.get(user_id=user_id)
+        # user_data.age = request.data['age']
+        user_data.blood_type_id = request.data['blood_type_id']
         user_data.contact = request.data['contact']
-        user_data.is_active_donar = request.data['is_active_donar']
+        # user_data.is_active_donar = request.data['is_active_donar']
         user_data.save()
+        user = User.objects.get(id=user_id)
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.email = request.data['email']
+        user.save()
         return Response()        
 
 

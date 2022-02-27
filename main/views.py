@@ -5,12 +5,12 @@ from .models import *
 
 
 # Create your views here.
-@login_required(login_url='/login/')
-def index_view(request):
-    context = {
-        'title': 'Home'
-    }
-    return render(request, 'index.html', context)
+# @login_required(login_url='/login/')
+# def index_view(request):
+#     context = {
+#         'title': 'Home'
+#     }
+#     return render(request, 'index.html', context)
 
 
 def login_view(request):
@@ -48,8 +48,12 @@ def my_donations(request):
 
 
 @login_required(login_url='/login/')
-def myprofile(request):
+def profile_view(request):
+    user = UserPersonalInfo.objects.get(user=request.user)
+    blood_groups = BloodType.objects.all()
     context = {
-        'title': 'Home'
+        'title': 'Home',
+        'user': user,
+        'blood_groups': blood_groups,
     }
     return render(request, 'my-profile.html', context)

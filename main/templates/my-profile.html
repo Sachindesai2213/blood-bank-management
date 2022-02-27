@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block dashboard_content %}
-
 <div class="content">
 	<div class="row">
 		<div class="col-lg-12">
@@ -11,12 +10,18 @@
 					<h5 class="card-title">Edit Profile</h5>
 				</div>
 				<div class="card-body">
-					<form>
+					<form id="profile-form">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="exampleInputEmail1">Email address</label>
-									<input type="email" class="form-control" placeholder="Email">
+									<label for="email">Email address</label>
+									<input type="email" class="form-control" placeholder="Email" id="email" value={{user.user.email}} required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="contact">Contact</label>
+									<input type="text" class="form-control" placeholder="Contact" id="contact" value={{user.contact}} required>
 								</div>
 							</div>
 						</div>
@@ -24,17 +29,17 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>First Name</label>
-									<input type="text" class="form-control" placeholder="Company" value="Chet">
+									<input type="text" class="form-control" placeholder="First Name" id="first-name" value={{user.user.first_name}} required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Last Name</label>
-									<input type="text" class="form-control" placeholder="Last Name" value="Faker">
+									<input type="text" class="form-control" placeholder="Last Name" id="last-name" value={{user.user.last_name}} required>
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						{% comment %} <div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Address</label>
@@ -61,6 +66,19 @@
 									<input type="number" class="form-control" placeholder="ZIP Code">
 								</div>
 							</div>
+						</div> {% endcomment %}
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="blood-group">Blood Group</label>
+									<select class="form-control" id="blood-group" required>
+										<option value=''>Select Blood Group</option>
+										{% for blood_group in blood_groups %}
+										<option value={{blood_group.id}} {% if blood_group.id == user.blood_type.id %}selected{% endif %}>{{blood_group.abbr}}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="update ml-auto mr-auto">
@@ -73,5 +91,7 @@
 		</div>
 	</div>
 </div>
-
 {% endblock dashboard_content %}
+{% block js_files %}
+<script src="{% static '/js/main/profile.js' %}"></script>
+{% endblock js_files %}
