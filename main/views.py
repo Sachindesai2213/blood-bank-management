@@ -1,16 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from datetime import datetime
 
 from .models import *
 
 
 # Create your views here.
-# @login_required(login_url='/login/')
-# def index_view(request):
-#     context = {
-#         'title': 'Home'
-#     }
-#     return render(request, 'index.html', context)
+@login_required(login_url='/login/')
+def index_view(request):
+    return redirect('/profile/')
+    # context = {
+    #     'title': 'Home'
+    # }
+    # return render(request, 'index.html', context)
 
 
 def login_view(request):
@@ -31,12 +34,33 @@ def signup_view(request):
 
 @login_required(login_url='/login/')
 def requirements(request):
+    blood_types = BloodType.objects.all()
+    user_requirements = list(Requirement.objects.filter(user=request.user).values('location', 'blood_type__abbr', 'quantity', 'description', 'date_time', 'requirement_fulfilled'))
+    for requirement in user_requirements:
+        requirement['date_time'] = requirement['date_time'].strftime('%d-%m-%Y %H:%M')
+        requirement['requirement_fulfilled'] = 'Yes' if requirement['requirement_fulfilled'] else 'No'
     context = {
-        'title': 'Home'
+        'title': 'Home',
+        'blood_types': blood_types,
+        'user_requirements': user_requirements,
     }
-    if request.path == '/requirements/me/':
-        return render(request, 'requirements/me.html', context)
-    return render(request, 'requirements/index.html', context)
+    return render(request, 'requirements.html', context)
+
+
+@login_required(login_url='/login/')
+def about_us_view(request):
+    context = {
+        'title': 'About Us'
+    }
+    return render(request, 'about-us.html', context)
+
+
+@login_required(login_url='/login/')
+def contact_us_view(request):
+    context = {
+        'title': 'Contact Us'
+    }
+    return render(request, 'contact-us.html', context)
 
 
 @login_required(login_url='/login/')
@@ -57,3 +81,8 @@ def profile_view(request):
         'blood_groups': blood_groups,
     }
     return render(request, 'my-profile.html', context)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/login/')

@@ -71,14 +71,21 @@ def signup_view(request):
 def requirement_view(request):
     if request.method == 'POST':
         requirement = Requirement(
-            user_id = request.data['user_id'],
-            blood_type_id = request.data['blood_group'],
+            user_id = request.user.id,
+            blood_type_id = request.data['blood_type_id'],
             quantity = request.data['quantity'],
             location = request.data['location'],
             description = request.data['description'],
         )
         requirement.save()
-        return Response()
+        user_requirements = list(Requirement.objects.filter(user=request.user).values('location', 'blood_type__abbr', 'quantity', 'description', 'date_time', 'requirement_fulfilled'))
+        for requirement in user_requirements:
+            requirement['date_time'] = requirement['date_time'].strftime('%d-%m-%Y %H:%M')
+            requirement['requirement_fulfilled'] = 'Yes' if requirement['requirement_fulfilled'] else 'No'
+        data = {
+            'user_requirements': user_requirements,
+        }
+        return Response(data)
 
 
 @api_view(['POST'])

@@ -21,16 +21,15 @@
                             bg-gradient-primary
                             shadow-primary
                             border-radius-lg
-                            py-3
+                            py-1
                             pe-1
                         "
                     >
                         <h4
                             class="
-                                text-white
+                                text-dark
                                 font-weight-bolder
                                 text-center
-                                mt-2
                                 mb-0
                             "
                         >
@@ -40,54 +39,39 @@
                 </div>
                 <div class="card-body">
                     <form id="signup-form" role="form" class="text-start">
-                        <div class="input-group input-group-outline mb-3">
                             <label class="form-label">First Name</label>
                             <input
                                 id="first-name"
                                 type="text"
                                 class="form-control"
                             />
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
                             <label class="form-label">Last Name</label>
                             <input
                                 id="last-name"
                                 type="text"
                                 class="form-control"
                             />
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
                             <label class="form-label">Username</label>
                             <input
                                 id="username"
                                 type="text"
                                 class="form-control"
                             />
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Blood Group</label>
                             <select id="blood-group" class="form-control">
                                 <option value="" selected>Select Blood Group</option>
                                 {% for blood_type in blood_types %}
                                 <option value={{ blood_type.id }}>{{ blood_type.abbr }}</option>
                                 {% endfor %}
                             </select>
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
                             <label class="form-label">Age</label>
                             <input id="age" type="number" class="form-control" />
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
                             <label class="form-label">Contact</label>
                             <input id="contact" type="number" class="form-control" />
-                        </div>
-                        <div class="input-group input-group-outline my-3">
                             <label class="form-label">Email</label>
                             <input id="email" type="email" class="form-control" />
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
                             <label class="form-label">Password</label>
                             <input id="password" type="password" class="form-control" />
-                        </div>
                         <div class="text-center">
                             <button
                                 type="submit"

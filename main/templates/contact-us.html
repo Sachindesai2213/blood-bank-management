@@ -1,0 +1,45 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+<div class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card card-user">
+				<div class="card-header">
+					<h5 class="card-title">Contact Us</h5>
+				</div>
+				<div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Contact Info</h6>
+                            <ul>
+                                <li class="mt-5">Email: admin@bbmanagement.com</li>
+                                <li class="mt-5">Contact: 0987654321</li>
+                                <li class="mt-5">Address: Mumbai, Maharashtra, India</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <form id="contact-us-form">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea class="form-control" id="message" rows="3"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock dashboard_content %}

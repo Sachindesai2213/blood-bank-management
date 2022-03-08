@@ -7,7 +7,7 @@
 		<link rel="icon" type="image/png" href="{% static '/img/favicon.png' %}">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>
-		  Paper Dashboard 2 by Creative Tim
+		  BB Management
 		</title>
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 		<!--     Fonts and icons     -->
@@ -35,12 +35,6 @@
             
             {% endblock main_content %}
         </div>    
-        
-        <!-- ... -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-     
-        <!-- DevExtreme library -->
-        <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
         <!--   Core JS Files   -->
 		<script src="{% static '/js/core/jquery.min.js' %}"></script>
 		<script src="{% static '/js/core/popper.min.js' %}"></script>
@@ -55,6 +49,9 @@
 		<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 		<script src="{% static '/js/paper-dashboard.min.js' %}?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 		<script src="{% static '/demo/demo.js' %}"></script>
+     
+        <!-- DevExtreme library -->
+        <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
         {% block js_files %}{% endblock js_files %}
         <script>
             function getCookie(name) {

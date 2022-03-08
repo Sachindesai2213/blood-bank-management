@@ -1,0 +1,79 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+	<div class="content">
+		<ul class="nav nav-tabs mb-3">
+			<li class="nav-item">
+				<a class="nav-link {% if request.path == '/requirements/' %} active {% endif %}" aria-current="page" href="/requirements/">My Requirements</a>
+			</li>
+			{% comment %} <li class="nav-item">
+				<a class="nav-link {% if request.path == '/requirements/me/' %} active {% endif %}" href="/requirements/me/">Posted by me</a>
+			</li> {% endcomment %}
+		</ul>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h4 class="card-title">Requirements</h4>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Post a requirement</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="requirements-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-center" role="document">
+			<div class="modal-content">
+                <form id="add-requirement-form">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Create Requirement</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+                        <div class="form-group">
+                            <label>Blood group</label>
+                            <select id="blood-group" class="form-control">
+                                <option value="" selected>Select Blood Group</option>
+                                {% for blood_type in blood_types %}
+                                <option value={{ blood_type.id }}>{{ blood_type.abbr }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input id="location" type="text" placeholder="e.g. Mumbai" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input id="quantity" type="number" placeholder="in ml" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="description" rows="4" class="form-control"></textarea>
+                        </div>
+                        {% comment %} <div class="form-group">
+                            <label>Upload documents (optional)</label>
+                            <input form="add-requirement-form" type="file" class="form-control"/>
+                        </div> {% endcomment %}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Create Requirement</button>
+				</div>
+                </form>
+			</div>
+		</div>
+	</div>
+{% endblock dashboard_content %}
+{% block js_files %}
+<script src="{% static '/js/main/requirements.js' %}"></script>
+{% endblock js_files %}
+{% block js_content %}
+requirementsGrid({{user_requirements|safe}})
+{% endblock js_content %}
