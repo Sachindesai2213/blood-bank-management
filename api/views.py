@@ -41,8 +41,7 @@ def login_view(request):
 @api_view(['POST', 'PUT'])
 def signup_view(request):
     if request.method == 'POST':
-        user = User.objects.create_user(username=request.data['username'], first_name=request.data['first_name'],
-                                 last_name=request.data['last_name'], email=request.data['email'], password=request.data['password'])
+        user = User.objects.create_user(username=request.data['username'], first_name=request.data['first_name'],last_name=request.data['last_name'], email=request.data['email'], password=request.data['password'])
         user_data = UserPersonalInfo(
             user = user,
             age = request.data['age'],
@@ -93,7 +92,15 @@ def requirement_donors_view(request):
     if request.method == 'POST':
         requirement_donors = RequirementDonors(
             requirement_id = request.data['requirement_id'],
-            donor_id = request.data['donor_id'],
+            donor_id = request.user.id,
         )
         requirement_donors.save()
+        return Response()
+
+@api_view(['PATCH'])
+def requirement_donor_view(request, id):
+    if request.method == 'PATCH':
+        requirement_donor = RequirementDonors.objects.get(id=id)
+        requirement_donor.acceptance_status = True
+        requirement_donor.save(update_fields=['acceptance_status'])
         return Response()
