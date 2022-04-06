@@ -7,70 +7,18 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header d-flex align-items-center justify-content-between">
-				<h4 class="card-title">Donations</h4>
+				<h4 class="card-title">My Donations</h4>
 			</div>
 			<div class="card-body">
-				<div>
-					<table class="table">
-						<thead class=" text-primary">
-							<th>
-								Posted on
-							</th>
-							<th>
-								User name
-							</th>
-							<th>
-								Location
-							</th>
-							<th>
-								Blood type
-							</th>
-							<th>
-								Quantity
-							</th>
-							<th>
-								Description
-							</th>
-							<th>
-								Attachments
-							</th>
-							<th>
-								Donated on
-							</th>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									1 day ago
-								</td>
-								<td>
-									John Doe
-								</td>
-								<td>
-									USA
-								</td>
-								<td>
-									A+
-								</td>
-								<td>
-									100 ml
-								</td>
-								<td>
-									Description
-								</td>
-								<td>
-									<a href="">Show document</a>
-								</td>
-								<td>
-									1 days ago
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<div id="donation-request-grid"></div>
 			</div>
 		</div>
 	</div>
 </div>
-
 {% endblock tab_content %}
+{% block js_files %}
+<script src="{% static '/js/main/donations.js' %}"></script>
+{% endblock js_files %}
+{% block js_content %}
+donationRequestGrid({{donation_requests|safe}})
+{% endblock js_content %}

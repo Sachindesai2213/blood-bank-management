@@ -2,28 +2,41 @@
 {% load static %}
 
 {% block dashboard_content %}
-	<div class="content">
-		<ul class="nav nav-tabs mb-3">
-			<li class="nav-item">
-				<a class="nav-link {% if request.path == '/requirements/' %} active {% endif %}" aria-current="page" href="/requirements/">My Requirements</a>
-			</li>
-			{% comment %} <li class="nav-item">
-				<a class="nav-link {% if request.path == '/requirements/me/' %} active {% endif %}" href="/requirements/me/">Posted by me</a>
-			</li> {% endcomment %}
-		</ul>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                        <h4 class="card-title">Requirements</h4>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Post a requirement</button>
-                    </div>
-                    <div class="card-body">
+	<div class="content"><ul class="nav nav-tabs" id="requirements-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="my-requirements-tab" data-toggle="tab" href="#my-requirements" role="tab" aria-controls="home" aria-selected="true">My Requirements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="global-requirements-tab" data-toggle="tab" href="#global-requirements" role="tab" aria-controls="global-requirements" aria-selected="false">Global Requirements</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="my-requirements" role="tabpanel" aria-labelledby="my-requirements-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card p-3">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h4 class="card-title">Requirements</h4>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Post a requirement</button>
+                        </div>
                         <div id="requirements-grid"></div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="global-requirements" role="tabpanel" aria-labelledby="global-requirements-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card p-3">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h4 class="card-title">Global Requirements</h4>
+                        </div>
+                        <div id="global-requirements-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
 	</div>
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-center" role="document">
@@ -76,4 +89,5 @@
 {% endblock js_files %}
 {% block js_content %}
 requirementsGrid({{user_requirements|safe}})
+globalRequirementsGrid({{global_requirements|safe}})
 {% endblock js_content %}
